@@ -8,9 +8,13 @@
   </head>
   <body>
     <form action="">
-      <input type="text" required placeholder="Location" />
+      <div class="form-control">
+        <label for="location">Location:</label>
+        <input id="location" type="text" required />
+      </div>
       <button>Get weather</button>
     </form>
+    <div class="weather-card"></div>
     <script src="./main.js"></script>
   </body>
 </html>

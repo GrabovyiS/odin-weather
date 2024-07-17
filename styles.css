@@ -2,4 +2,90 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+:root {
+  --border: 7px solid black;
+}
+
+label {
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+}
+
+input {
+  display: block;
+  width: 100%;
+  border: var(--border);
+  padding: 10px;
+  outline: none;
+}
+
+button {
+  outline: none;
+  border: var(--border);
+  padding: 12px;
+  background-color: white;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 64px auto;
+  max-width: 400px;
+}
+
+.weather-card {
+  padding: 16px;
+  margin: 0 auto;
+  border: var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 400px;
+  min-height: 400px;
+
+  .weather-field {
+    h2 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    img {
+      /* lala */
+    }
+  }
+}
+
+.loader {
+  width: 100px;
+  height: 100px;
+  margin: auto auto;
+  border: var(--border);
+  border-left: none;
+  border-right: none;
+  border-radius: 50%;
+  transform: rotate(360deg);
+  animation: rotating 1.5s ease-in-out infinite;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
