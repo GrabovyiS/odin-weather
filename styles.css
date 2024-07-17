@@ -62,10 +62,12 @@ form {
       font-size: 20px;
       margin-bottom: 8px;
     }
+  }
 
-    img {
-      /* lala */
-    }
+  img {
+    align-self: center;
+    margin-bottom: auto;
+    margin-top: auto;
   }
 }
 
@@ -88,4 +90,11 @@ form {
   to {
     transform: rotate(360deg);
   }
+}
+
+.error-message {
+  align-self: center;
+  margin-bottom: auto;
+  margin-top: auto;
+  max-width: 280px;
 }

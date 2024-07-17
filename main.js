@@ -35,9 +35,14 @@ function renderWeather() {
   console.log('rendering');
   showLoader();
   getWeather(location)
-    .finally(() => hideLoader())
     .then((weather) => {
-      renderWeatherCard(weather);
+      console.log(weather);
+      getGifUrl(weather.currentConditions.conditions)
+        .finally(() => hideLoader())
+        .then((gifUrl) => {
+          console.log(weather, gifUrl);
+          renderWeatherCard(weather, gifUrl);
+        });
     })
     .catch((err) => {
       showError(err);
@@ -56,10 +61,16 @@ function hideLoader() {
 }
 
 function showError(err) {
-  console.log(err);
+  weatherCard.textContent = '';
+  const errorMessage = document.createElement('p');
+  errorMessage.classList.add('error-message');
+  errorMessage.textContent = err;
+  weatherCard.appendChild(errorMessage);
 }
 
-function renderWeatherCard(weatherData) {
+function renderWeatherCard(weatherData, gifUrl) {
+  console.log('rendering from:', weatherData, gifUrl);
+
   const addressField = document.createElement('div');
   addressField.classList.add('weather-field');
 
@@ -96,7 +107,25 @@ function renderWeatherCard(weatherData) {
   temperatureField.appendChild(temperatureHeading);
   temperatureField.appendChild(temperatureText);
 
+  const gif = document.createElement('img');
+  gif.src = gifUrl;
+  gif.width = '100';
+  gif.height = '100';
+
   weatherCard.appendChild(addressField);
   weatherCard.appendChild(conditionsField);
   weatherCard.appendChild(temperatureField);
+  weatherCard.appendChild(gif);
+}
+
+function getGifUrl(prompt) {
+  return fetch(
+    `https://api.giphy.com/v1/stickers/translate?api_key=EuDOpmcYGNUEWsSJWM7hUbESNPEl0kk4&s=${prompt}`
+  )
+    .then((response) => {
+      return response.json();
+    })
+    .then((result) => {
+      return result.data.images.fixed_height_small.url;
+    });
 }
