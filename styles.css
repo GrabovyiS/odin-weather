@@ -98,3 +98,46 @@ form {
   margin-top: auto;
   max-width: 280px;
 }
+
+input[type='checkbox'] {
+  display: none;
+}
+
+.toggle-degrees {
+  width: 80px;
+  height: 50px;
+  border: var(--border);
+  position: relative;
+  cursor: pointer;
+
+  &.disabled {
+    border-color: rgb(83, 83, 83);
+    cursor: not-allowed;
+  }
+
+  &::after {
+    content: '';
+    z-index: 1;
+    position: absolute;
+    background-color: black;
+    width: 24px;
+    height: 24px;
+    top: 7px;
+    left: 7px;
+    transition: transform 0.05s linear;
+  }
+
+  &.disabled::after {
+    background-color: rgb(83, 83, 83);
+  }
+}
+
+.toggle-degrees-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+input:checked + .toggle-degrees::after {
+  transform: translateX(28px);
+}
